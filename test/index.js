@@ -1,4 +1,5 @@
-var recordmic = require( 'recordmic' );
+var recordmic = require( 'recordmic' ),
+	browsersavefile = require( 'browsersavefile' );
 
 var wavencoder = require( '../index' )( {
 
@@ -30,14 +31,7 @@ if( recordmic.isAvailable ) {
 
 					console.log( data );
 
-					//this saving a file is from Recording.js
-					var url = (window.URL || window.webkitURL).createObjectURL(data);
-					var link = window.document.createElement('a');
-					link.href = url;
-					link.download = 'output.wav';
-					var click = document.createEvent("Event");
-					click.initEvent("click", true, true);
-					link.dispatchEvent(click);
+					browsersavefile( 'output.wav', data );
 				});
 
 			}, 3000 );
