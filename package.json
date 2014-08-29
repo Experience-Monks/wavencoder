@@ -1,0 +1,28 @@
+{
+  "name": "wavencoder",
+  "version": "0.0.0",
+  "description": "This module will take sampled data and encode it as a wav file. This is based on https://github.com/mattdiamond/Recorderjs/",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Jam3/wavencoder.git"
+  },
+  "keywords": [
+    "wav",
+    "encoder",
+    "sample",
+    "data"
+  ],
+  "author": "Mikko Haapoja <me@mikkoh.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jam3/wavencoder/issues"
+  },
+  "homepage": "https://github.com/Jam3/wavencoder"
+}
