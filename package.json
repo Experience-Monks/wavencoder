@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/Jam3/wavencoder/issues"
   },
-  "homepage": "https://github.com/Jam3/wavencoder"
+  "homepage": "https://github.com/Jam3/wavencoder",
+  "devDependencies": {
+    "recordmic": "0.0.1"
+  }
 }

@@ -32,7 +32,7 @@ try {
 
 
 function init(config){
-	sampleRate = config.sampleRate;
+	sampleRate = ( config && config.sampleRate ) || 44100;
 }
 
 function exportWAV(type){
@@ -71,6 +71,8 @@ function writeString(view, offset, string){
 function encodeWAV(samples){
 	var buffer = new ArrayBuffer(44 + samples.length * 2);
 	var view = new DataView(buffer);
+
+	console.log( sampleRate, samples.length );
 
 	/* RIFF identifier */
 	writeString(view, 0, 'RIFF');

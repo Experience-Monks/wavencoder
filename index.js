@@ -9,7 +9,7 @@ var wavencoder = function( settings ) {
 
 	if( this.isUsingWorker ) {
 
-		this.worker = new Worker( settings.pathToWorker || 'waveWorker.js' );
+		this.worker = new Worker( settings.workerPath || 'waveWorker.js' );
 	}
 };
 
@@ -19,8 +19,14 @@ wavencoder.prototype = {
 
 		if( this.isUsingWorker ) {
 
+			this.worker.postMessage( {
+
+				config: settings,
+				command: 'init'
+			});
 		} else {
 
+			worker.init( settings );
 		}
 	},
 
@@ -28,7 +34,10 @@ wavencoder.prototype = {
 
 		if( this.isUsingWorker ) {
 
-			this.worker.postMessage( interleaved );
+			this.worker.postMessage( {
+				command: 'setInterleaved',
+				interleaved: interleaved 
+			});
 		} else {
 
 			worker.setInterleaved( interleaved );
@@ -45,6 +54,11 @@ wavencoder.prototype = {
 
 				this.worker.onmessage = undefined;
 			}.bind( this );
+
+			this.worker.postMessage( {
+
+				command: 'exportWAV'
+			});
 		} else {
 
 			callback( worker.exportWAV() );
