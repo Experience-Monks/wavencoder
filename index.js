@@ -5,6 +5,8 @@ var wavencoder = function( settings ) {
 	if( !( this instanceof wavencoder ) )
 		return new wavencoder( settings );
 
+	settings = settings || {};
+	
 	this.isUsingWorker = Boolean( window.Worker && !settings.noWorker );
 
 	if( this.isUsingWorker ) {
