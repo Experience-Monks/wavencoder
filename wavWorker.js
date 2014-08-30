@@ -1,4 +1,4 @@
-var interleaved, sampleRate;
+var interleaved, sampleRate, channels;
 
 
 //this will fail if this wasn't browserified
@@ -33,6 +33,7 @@ try {
 
 function init(config){
 	sampleRate = ( config && config.sampleRate ) || 44100;
+	channels = ( config && config.channels ) || 2;
 }
 
 function exportWAV(type){
@@ -87,7 +88,10 @@ function encodeWAV(samples){
 	/* sample format (raw) */
 	view.setUint16(20, 1, true);
 	/* channel count */
-	view.setUint16(22, 2, true);
+
+	view.setUint16(22, channels, true);
+	// view.setUint16(22, 2, true);
+	
 	/* sample rate */
 	view.setUint32(24, sampleRate, true);
 	/* byte rate (sample rate * block align) */
