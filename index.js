@@ -1,4 +1,8 @@
+var brfs = require('brfs');
+var webWorker = require('web-worker');
 var worker = require( './wavWorker' );
+var fs = require('fs');
+var path = require('path');
 
 var wavencoder = function( settings ) {
 
@@ -11,7 +15,8 @@ var wavencoder = function( settings ) {
 
 	if( this.isUsingWorker ) {
 
-		this.worker = new Worker( settings.workerPath || 'waveWorker.js' );
+		console.log('using with string');
+		this.worker = new webWorker(fs.readFileSync(path.join(__dirname, 'wavWorker.js'), 'utf8'));
 	}
 };
 

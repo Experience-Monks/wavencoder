@@ -1,31 +1,32 @@
-var recordmic = require( 'recordmic' ),
-	browsersavefile = require( 'browsersavefile' );
+var recordmic = require('recordmic');
+var browsersavefile = require( 'browsersavefile' );
 
-var wavencoder = require( '../index' )( {
-
-	noWorker: true
-});
+var wavencoder = require('../index')();
 
 wavencoder.init();
 
 
-if( recordmic.isAvailable ) {
+if(recordmic.isAvailable) {
 
-	var recorder = recordmic( { onSampleData: function( left, right ) {
+	var recorder = recordmic({ onSampleData: function( left, right ) {
 
 		// console.log( left );
 	}}, function( error ) {
 
-		console.log( 'we\'re good', error );
+		console.log('we\'re good', error);
 
-		if( !error ) {
+		if(!error) {
+			console.log('start recording');
+
 			recorder.start();
 
 			setTimeout( function() {
 
+				console.log('stop recording');
+
 				recorder.stop();
 
-				wavencoder.setInterleaved( recorder.getStereoData() );
+				wavencoder.setInterleaved(recorder.getStereoData());
 
 				wavencoder.exportWAV( function( data ) {
 

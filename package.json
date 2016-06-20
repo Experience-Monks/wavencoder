@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "budo test/ --live --open"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,17 @@
   },
   "homepage": "https://github.com/Jam3/wavencoder",
   "devDependencies": {
+    "brfs": "^1.4.3",
+    "browsersavefile": "0.0.6",
+    "budo": "^8.3.0",
     "recordmic": "0.0.1"
+  },
+  "dependencies": {
+    "web-worker": "^0.1.6"
+  },
+  "browserify": {
+    "transform": [
+      "brfs"
+    ]
   }
 }
